@@ -1,0 +1,48 @@
+***************************
+*** The RhoClient class ***
+***************************
+
+The Class is meant to be a wrapper for Apache's HTTP client.
+It can do POST, GET, define headers and keep track of cookies.
+The .content attribute contains the response body.
+The class is not written in functional style.
+
+INDEX
+
+In this list of attributes and methods, you will see 
+an identifier enclosed in parenthesis for easy search.
+Followed by the attribute or method name, and brief description.
+Search for the identifier for full info.
+
+	(<Identifier>) <NAME>: Description
+
+The Identifier can be used to search in the source code as well.
+Interfaces for methods are not described in this list,
+search for them to see their arguments.
+
+ATTRIBUTES:
+
+(AttrURI) 		URI: URI the client will connect to.
+(Attrclient)		client: CloseableHttpClient
+(Attrresponse)		response: HttpResponse 
+(Attrencoding)		encoding: String that sets encoding, default ISO-8859-1.
+
+(Attrget)		get: HttpGet object, simply holds GET queries.
+(Attrpost)		post: HttpPost object, simply holds POST queries.
+
+(Attrrequest_headers)	request_headers: A String to String Map that holds request headers.
+(Attrresponse_headers)  response_headers: Sane as request_headers, but for the server response.
+
+(Attrcontext) 		context: HttpCoreContext object, used to hold cookies and other info that should be retained between requests.
+(AttrcontextInfo)	contextInfo: Options for context. Actually it's never used explicitly, but things break if it isn't there.
+
+URI MANIPULATION METHODS:
+(MthdsetURI) 		setURI: Modifies the URI the client will connect to.
+(MthdgetBaseURI) 	getBaseURI: Returns URI without GET parameters.
+(MthdgetParameters)	getParameters: Returns parameters in the URI.
+
+SERVER REQUEST METHODS: 
+(MthddoGET)		doGET: Performs a GET request to a server, URI should be set.
+(MthhdoPOST)		doPOST: Performs a POST request to a server, URI should be set.
+(Mthdclose)		close: Closes the client, object is unusable after this has been done.
+(Mthdwait)		wait: Waits for a given ammount of milliseconds.

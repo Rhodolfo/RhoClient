@@ -1,0 +1,21 @@
+This sbt build has one main project, the http client wrapper RhoClient.
+RhoClient is a wrapper for HttpComponents from Apache.
+
+To initialize the client:
+> import com.rho.client.RhoClient
+> val client = new RhoClient(scheme="https",host="www.example.com")
+
+Perform a simple GET:
+> val string = client.doGET(Map("par"->"test"))
+would do a GET to https://www.example.com?par=test, string has the response.
+
+Another GET example:
+> val string = client.doGET(Map("par1"->"test1","par2"->"test2"),"/dir/other")
+would do a GET to https://www.example.com/dir/other?par1=test1&par2=test2
+
+POST example: 
+> val string = client.doPOST(Map("par"->"test","bar"->"rest"),Map(),"/dir")
+would perform a POST to https://www.example.com/dir with the parameters par=test and bar=rest
+
+Look inside src/README for a more complete list of methods and attributes of the RhoClient class.
+Look inside demos/src for some more examples.
