@@ -1,5 +1,6 @@
 This sbt build has one main project, the http client wrapper RhoClient.
-RhoClient is a wrapper for HttpComponents from Apache.
+RhoClient is a wrapper for HttpComponents from Apache, 
+Unfortunately it is not written in full functional programming style (there's some mutables).
 
 To initialize the client:
 > import com.rho.client.RhoClient
@@ -19,3 +20,9 @@ would perform a POST to https://www.example.com/dir with the parameters par=test
 
 Look inside src/README for a more complete list of methods and attributes of the RhoClient class.
 Look inside demos/src for some more examples.
+
+Wishlist: 
+
+- Some testing units would be nice.
+- Actual documentation would be amazing.
+- Functional style (how to handle cookies this way?).
