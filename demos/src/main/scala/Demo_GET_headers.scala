@@ -17,19 +17,14 @@ object D_Headers {
     println(prefix+"Start")
 
     // Setting some variables, path is long
-    var host = "www.google.com"
+    val host = "www.google.com"
 
-    // Set URI, parameters
-    System.out.println(prefix+"Initializing RhoClient object, setting URI")
-    val Client = new RhoClient(host,"http")
+    // Set URI, parameters, add headers
+    System.out.println(prefix+"Initializing RhoClient object, setting URI and headers")
+    val heads = Map("Dummy 1"->"foo","Dummy 2"->"bar")
+    val Client = new RhoClient(host,"http",heads)
     System.out.println(Client.URI)
 
-    // Set Headers
-    System.out.println(prefix+"Defining headers")  
-    var heads = Map("Dummy 1"->"foo","Dummy 2"->"bar")
-    Client.request_headers = heads
-    System.out.println(Client.request_headers)
-  
     // Perform GET request
     System.out.println(prefix+"Performing GET to google server")  
     val content = Client.doGET()

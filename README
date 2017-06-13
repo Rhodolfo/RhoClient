@@ -4,7 +4,7 @@ Unfortunately it is not written in full functional programming style (there's so
 
 To initialize the client:
 > import com.rho.client.RhoClient
-> val client = new RhoClient(scheme="https",host="www.example.com")
+> val client = new RhoClient(scheme="https",host="www.example.com",headers=Map("a"->"b"))
 
 Perform a simple GET:
 > val string = client.doGET(Map("par"->"test"))

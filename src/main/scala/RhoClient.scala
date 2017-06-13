@@ -27,12 +27,12 @@ import org.apache.http.protocol.HttpContext
 import org.apache.http.protocol.HttpCoreContext
 import org.apache.http.client.protocol.HttpClientContext
 
-class RhoClient(Host: String = "localhost", Scheme: String = "http") {
+class RhoClient(Host: String = "localhost", Scheme: String = "http", Headers: Map[String,String] = Map()) {
 
   // (Attrscheme Attrhost AttrURI)
   // Strings specifying scheme and host
-  var scheme: String = Scheme
-  var host: String = Host
+  val scheme: String = Scheme
+  val host: String = Host
   def URI(): URI = new URIBuilder().setScheme(scheme).setHost(host).build()
 
   // (Attrclient) (Attrresponse) (Attrencoding)
@@ -40,12 +40,8 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http") {
   var response: HttpResponse = null
   var encoding: String = "UTF-8"
 
-  // (Attrget) (Attrpost)
-  var get: HttpGet = null
-  var post: HttpPost = null
-
   // (Attrrequest_headers) (Attrresponse_headers)
-  var request_headers : Map[String,String] = Map()
+  val request_headers : Map[String,String] = Headers
   var response_headers: Map[String,String] = Map()
 
   // (Attrcontext) (AttrcontextInfo)
@@ -122,8 +118,8 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http") {
 
 
 
- // Auxiliary function for handling HTTP requests, request must be formed
-  def doRequest(request: HttpRequestBase): String = {
+// Auxiliary function for handling HTTP requests, request must be formed
+  private def doRequest(request: HttpRequestBase): String = {
     val request_checked = request match {
       case (x: HttpGet)  => request
       case (y: HttpPost) => request
@@ -167,7 +163,7 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http") {
   def doGET(getparams: Map[String,String] = Map(),path: String = ""): String = {
     // Initializing client object
     val URI = buildURI(this.scheme,this.host,path,getparams)
-    get = new HttpGet(URI)
+    val get = new HttpGet(URI)
     // Headers, only if they exist
     if (request_headers != Map()) {
       for (k <- request_headers.keys) {
@@ -184,7 +180,7 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http") {
   def doPOST(params: Map[String,String], getparams: Map[String,String] = Map(), path: String = ""): String = {
     // Initializing client object
     val URI = buildURI(this.scheme,this.host,path,getparams)
-    post = new HttpPost(URI)
+    val post = new HttpPost(URI)
     // Headers, only if the exist
     if (request_headers != Map()) {
       for (k <- request_headers.keys) {
@@ -206,13 +202,6 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http") {
   Closes client, does nothing else, useless. */
   def close() {
     client.close()
-  }
-
-/*  (Mthdwait)
-  Waits for a given time in milliseconds, outputs message to stdout, could be used for timed services. */
-  def wait(Time: Int = 100) {
-    System.out.println("[RhoClient] Waiting for "+Time.toString()+" ms")
-    Thread.sleep(Time)
   }
 
 } // End of class

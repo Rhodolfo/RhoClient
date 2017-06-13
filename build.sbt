@@ -4,7 +4,7 @@ lazy val commonSettings = Seq(
   libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.5",
   libraryDependencies += "org.apache.httpcomponents" % "httpcore" % "4.4",
   organization := "com.upax-research",
-  version := "1.0.0",
+  version := "1.1.0",
   scalacOptions := Seq("-feature"),
   scalaVersion := "2.12.1")
 
