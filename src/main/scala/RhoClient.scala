@@ -119,7 +119,7 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http", Headers: Ma
 
 
 // Auxiliary function for handling HTTP requests, request must be formed
-  private def doRequest(request: HttpRequestBase): String = {
+  def doRequest(request: HttpRequestBase): String = {
     val request_checked = request match {
       case (x: HttpGet)  => request
       case (y: HttpPost) => request
