@@ -41,7 +41,7 @@ class RhoClient(Host: String = "localhost", Scheme: String = "http", Headers: Ma
   var encoding: String = "UTF-8"
 
   // (Attrrequest_headers) (Attrresponse_headers)
-  val request_headers : Map[String,String] = Headers
+  var request_headers : Map[String,String] = Headers
   var response_headers: Map[String,String] = Map()
 
   // (Attrcontext) (AttrcontextInfo)
